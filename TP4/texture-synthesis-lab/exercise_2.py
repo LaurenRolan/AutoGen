@@ -10,7 +10,7 @@ save_every = 50
 N_scales = 1
 
 image_folder = 'Images/'
-image_name = 'bones.jpg' #raddish.jpg
+image_name = 'raddish.jpg' #raddish.jpg
 
 
 data_file = image_folder + image_name
@@ -62,15 +62,15 @@ torchvision.utils.save_image(y0,im_folder + 'input_image.jpg',normalize=True)
 
 
 # Exercise 2.5: part 1: replaces imsizes0, imsizes1 with resolutions imsize0/2^(N_scales-1)... imsize0/2^(0)
-#imsizes0 = []
-#imsizes1 = []
+imsizes0 = []
+imsizes1 = []
 
-#for i in range(N_scales):
-#    imsizes0 += [int(imsize0 / 2 ** i)]
-#    imsizes1 += [int(imsize1 / 2 ** i)]
+for i in range(N_scales):
+    imsizes0 += [int(imsize0 / 2 ** i)]
+    imsizes1 += [int(imsize1 / 2 ** i)]
 
-imsizes0 = [imsize0]
-imsizes1 = [imsize1]
+#imsizes0 = [imsize0]
+#imsizes1 = [imsize1]
 
 for s,cur_imsize0 in enumerate(imsizes0):
     
