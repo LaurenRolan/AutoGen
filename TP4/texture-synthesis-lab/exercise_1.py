@@ -3,21 +3,18 @@ import torch
 # ReLU is defined in slides
 def my_ReLU(x):
     # Hint: x<=0 is a logical array, with 1 where x>0, and 0 where x<0
-    # answer here
     return torch.mul(x, (x>=0).float())
 
 
 # EXERCISE 1.2: Backward of ReLU
 def ReLU_backward(x,dzdy):
     # Hint: dzdy is multiplied by the derivative of ReLU(x), with is 1 when w>0 and 0 when x<0
-    # answer here
     return torch.mul(dzdy, (x>=0).float())
     
 # EXERCISE 1.3: Implement backward of matrix multiplication w.r.t. x
 def mm_backward(A,x,dzdy):
-    # answer here
-    Ax = A.mm(x)
-    return ReLU_backward(Ax,dz)
+    At = A.t()
+    return torch.mm(At,dzdy)
 
 
 # Exercise 1.4: Compute derivative of function composition ReLU(Ax) w.r.t. x
@@ -40,7 +37,7 @@ y = A.mm(x)
 z = relu(y)
 z.backward(dz)
 
-print(x.grad)
-print(my_dzdx)
+print("PyTorch version ", x.grad)
+print("My version      ", my_dzdx)
 
 print('These two vectors should be the same!')
